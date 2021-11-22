@@ -9,6 +9,7 @@ import AuthContext from "../../store/auth-contex";
 export const AddExpense = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
+  const calculateBalance = authCtx.allBalance;
   const isEmpty = (value) => value.trim() === "";
   const isFiveChars = (value) => value.trim().length === 5;
   const [formInputsValidity, setFormInputsValidity] = useState({
@@ -23,6 +24,7 @@ export const AddExpense = () => {
   const enteredTypeRef = useRef();
   const enteredDateRef = useRef();
   const [transactions, settransactions] = useState([]);
+
   useEffect(() => {
     if (isLoggedIn) {
       fetchDbData();
@@ -113,7 +115,7 @@ export const AddExpense = () => {
             <div className="row mb-5">
               <div className="col-md-6  card">
                 <h5>Recent Deposit</h5>
-                <p>$ 12</p>
+                <p>$ 12 {calculateBalance}</p>
               </div>
               <div className="col-md-6 card">
                 <h5>Recent Expense </h5>

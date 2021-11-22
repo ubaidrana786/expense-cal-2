@@ -54,7 +54,7 @@ export const ExpenseList = () => {
               setuserExpenseData(dataArr);
               setmoney(depositeSum - expenseSum);
               // console.log(depositeSum);
-              console.log(depositeSum - expenseSum);
+              // console.log(depositeSum - expenseSum);
             }
           });
         });
