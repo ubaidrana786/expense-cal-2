@@ -25,9 +25,9 @@ export const AuthContextProvider = (props) => {
     });
   }, []);
   useEffect((user) => {
-  calculateBalance()
+    calculateBalance()
   }, [user])
-  const calculateBalance = ()=>{
+  const calculateBalance = () => {
     if (user) {
       db.collection("expense_calculator")
         .get()
@@ -65,11 +65,14 @@ export const AuthContextProvider = (props) => {
   }
 
   const userIsLoggedIn = user;
-  const allcalculation = depositBalance
- 
+  const showdepositBalance = depositBalance
+  const showexpenseBalance = expenseBalance
+  const showtotalBalance = money
   const contextValue = {
     isLoggedIn: userIsLoggedIn,
-    allBalance:allcalculation
+    totalBalance:showtotalBalance,
+    alldepositBalance: showdepositBalance,
+    allexpenseBalance:showexpenseBalance
   };
   return (
     <AuthContext.Provider value={contextValue}>

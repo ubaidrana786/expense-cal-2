@@ -12,17 +12,17 @@ export const ExpenseList = () => {
   const [userExpenseData, setuserExpenseData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [money, setmoney] = useState(0);
-  const [depositBalance, setdepositBalance] = useState("");
-  const [expenseBalance, setexpenseBalance] = useState("");
-  var expenses = 0;
-  var deposite = 0;
+  // const [depositBalance, setdepositBalance] = useState("");
+  // const [expenseBalance, setexpenseBalance] = useState("");
+  // var expenses = 0;
+  // var deposite = 0;
 
-  const addArrayNum = (a, b) => {
-    return +a + +b;
-  };
-  const subtractArrayNum = (a, b) => {
-    return a - -b;
-  };
+  // const addArrayNum = (a, b) => {
+  //   return +a + +b;
+  // };
+  // const subtractArrayNum = (a, b) => {
+  //   return a - -b;
+  // };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -37,22 +37,22 @@ export const ExpenseList = () => {
                 //console.log(data)
               });
 
-              expenses = dataArr.map((data) => {
-                return data.Type === "expense" ? data.price : 0;
-              });
-              deposite = dataArr.map((data) => {
-                return data.Type === "deposit" ? data.price : 0;
-              });
+              // expenses = dataArr.map((data) => {
+              //   return data.Type === "expense" ? data.price : 0;
+              // });
+              // deposite = dataArr.map((data) => {
+              //   return data.Type === "deposit" ? data.price : 0;
+              // });
 
-              setuserExpenseData(Object.values(doc.data(), doc.id));
-              const expenseSum = expenses.reduce(subtractArrayNum, 0);
-              setexpenseBalance(expenseSum);
-              // setexpenseBalance(expenses.reduce(subtractArrayNum, 0));
-              const depositeSum = deposite.reduce(addArrayNum, 0);
-              setdepositBalance(depositeSum);
-              // setdepositBalance(deposite.reduce(addArrayNum, 0));
+              // setuserExpenseData(Object.values(doc.data(), doc.id));
+              // const expenseSum = expenses.reduce(subtractArrayNum, 0);
+              // setexpenseBalance(expenseSum);
+              // // setexpenseBalance(expenses.reduce(subtractArrayNum, 0));
+              // const depositeSum = deposite.reduce(addArrayNum, 0);
+              // setdepositBalance(depositeSum);
+              // // setdepositBalance(deposite.reduce(addArrayNum, 0));
               setuserExpenseData(dataArr);
-              setmoney(depositeSum - expenseSum);
+              // setmoney(depositeSum - expenseSum);
               // console.log(depositeSum);
               // console.log(depositeSum - expenseSum);
             }
@@ -88,17 +88,16 @@ export const ExpenseList = () => {
 
   return (
     <>
-  
+
       <div className="container">
         <div className="mt-4">
           <h1 style={{ marginTop: "100px" }}>Recent Expenses</h1>
-          <h4>Total Balance {money}</h4>
-          <h4>expense {expenseBalance}</h4>
-          <h4>deposit {depositBalance}</h4>
+
           <div className="" style={{ margin: "auto" }}>
             <table className="table table-hover">
               <thead>
                 <tr>
+                <th scope="col">Id</th>
                   <th scope="col">Title</th>
                   <th scope="col">Price (Rs)</th>
                   <th scope="col">Type</th>
@@ -109,6 +108,7 @@ export const ExpenseList = () => {
                 {userExpenseData.map((item) => {
                   return (
                     <tr key={item.id}>
+                      <td>{item.id}</td>
                       <td>{item.name}</td>
                       <td>{item.price}</td>
                       <td>{item.Type}</td>
